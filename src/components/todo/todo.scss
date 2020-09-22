@@ -1,97 +1,100 @@
 @import "~bootstrap/scss/bootstrap";
 
-body, html {
-    height: 100%;
-    margin: 0;
-    padding:0;
-    width: 100%;
-}
+// $primaryNav: rgb(65, 65, 65);
 
-.todo-details {
-    display:flex;
-    flex-direction:column;
 
-    header {
-        display:flex;
-        flex-direction:row;
-        justify-content:space-between;
-        padding:.5em 1em;
-    }
+// body, html {
+//     height: 100%;
+//     margin: 0;
+//     padding:0;
+//     width: 100%;
+// }
 
-    .item {
-        flex:1;
-        padding: 1em;
-    }
+// .todo-details {
+//     display:flex;
+//     flex-direction:column;
 
-}
+//     header {
+//         display:flex;
+//         flex-direction:row;
+//         justify-content:space-between;
+//         padding:.5em 1em;
+//     }
 
-.todo {
+//     .item {
+//         flex:1;
+//         padding: 1em;
+//     }
 
-    display:flex;
-    flex-direction:row;
-    justify-content: flex-start;
-    margin: 2em;
+// }
 
-    form {
+// .todo {
 
-        display:flex;
-        flex-direction:column;
-        margin-right: 2em;
+//     display:flex;
+//     flex-direction:row;
+//     justify-content: flex-start;
+//     margin: 2em;
 
-        label {
-            display: flex;
-            flex-direction:column;
-            margin-bottom: 1em;
-        }
-    }
+//     form {
 
-    ul {
-        list-style-type:none;
-        margin:0;
-        padding:0;
+//         display:flex;
+//         flex-direction:column;
+//         margin-right: 2em;
 
-        li {
+//         label {
+//             display: flex;
+//             flex-direction:column;
+//             margin-bottom: 1em;
+//         }
+//     }
 
-            align-items: center;
-            display:flex;
-            flex-direction:row;
-            font-size: .75em;
-            margin: .75em .5em;
+//     ul {
+//         list-style-type:none;
+//         margin:0;
+//         padding:0;
 
-            &.complete-true {
-              span {
-                background: pink;
-                text-decoration:line-through;
-                &:hover {
-                   background: seagreen;
-                }
-              }
-            }
+//         li {
 
-            span {
-                background: #e0e0e0;
-                cursor:pointer;
-                &:hover {
-                    background: pink;
-                }
-            }
-             span, input {
-                 border: .5px solid #eee;
-                 display:inline-block;
-                 padding: .2em .25em;
-                 width: 300px;
-             }
+//             align-items: center;
+//             display:flex;
+//             flex-direction:row;
+//             font-size: .75em;
+//             margin: .75em .5em;
 
-            button {
-                background: transparent;
-                border:none;
-                color:blue;
-                cursor:pointer;
-                padding:0;
-                margin: 0 .75em;
-            }
+//             &.complete-true {
+//               span {
+//                 background: pink;
+//                 text-decoration:line-through;
+//                 &:hover {
+//                    background: seagreen;
+//                 }
+//               }
+//             }
 
-        }
-    }
+//             span {
+//                 background: #e0e0e0;
+//                 cursor:pointer;
+//                 &:hover {
+//                     background: pink;
+//                 }
+//             }
+//              span, input {
+//                  border: .5px solid #eee;
+//                  display:inline-block;
+//                  padding: .2em .25em;
+//                  width: 300px;
+//              }
 
-}
+//             button {
+//                 background: transparent;
+//                 border:none;
+//                 color:blue;
+//                 cursor:pointer;
+//                 padding:0;
+//                 margin: 0 .75em;
+//             }
+
+//         }
+//     }
+
+// }
