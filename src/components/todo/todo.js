@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 
 import TodoForm from './form.js';
 import TodoList from './list.js';
@@ -63,27 +68,43 @@ export default function ToDo() {
 
 
     return (
-        <>
-            <header>
-                <h2>
-                    There are {list.filter(item => !item.complete).length} Items To Complete
-                </h2>
-            </header>
 
-            <section className="todo">
+        <Container>
 
-                <div>
-                    <TodoForm handleSubmit={addItem} />
-                </div>
+            <Row>
+                <Col>
+                    <header>
+                        <Navbar bg='dark' variant='dark'>
+                            <Nav>
+                                <h3>
+                                    To Do List Manager ({list.filter(item => !item.complete).length})
+                                </h3>
+                            </Nav>
+                        </Navbar>
+                    </header>
+                </Col>
+            </Row>
 
-                <div>
-                    <TodoList
-                        list={list}
-                        handleComplete={toggleComplete}
-                    />
-                </div>
-            </section>
-        </>
+
+            <Row>
+                <Col>
+                    <section className="todo">
+
+                        <div>
+                            <TodoForm handleSubmit={addItem} />
+                        </div>
+
+                        <div>
+                            <TodoList
+                                list={list}
+                                handleComplete={toggleComplete}
+                            />
+                        </div>
+                    </section>
+                </Col>
+            </Row>
+
+        </Container>
 
     );
 
