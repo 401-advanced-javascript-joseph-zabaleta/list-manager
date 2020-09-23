@@ -7,8 +7,8 @@ import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 
 
-import TodoForm from './form.js';
-import TodoList from './list.js';
+import TodoForm from './form.jsx';
+import TodoList from './list.jsx';
 import './todo.scss';
 
 

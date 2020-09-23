@@ -1,16 +1,18 @@
 import { useState } from 'react';
 
 
-export default function useForm(callback) {
+export default function useForm(callback, defaultConfig) {
 
 
-    const [values, setValue] = useState({});
+    const defaultValue = defaultConfig ? defaultConfig : {};
+
+    const [values, setValue] = useState(defaultValue);
 
     const handleSubmit = (event) => {
 
         if (event) event.preventDefault();
         callback(values);
-
+        setValue(defaultValue);
     };
 
 
@@ -18,10 +20,10 @@ export default function useForm(callback) {
 
         event.persist();
 
-        setValue((values) => {
+        setValue((prevValues) => {
 
             return {
-                ...values, [event.target.name]: event.target.value
+                ...prevValues, [event.target.name]: event.target.value
             };
 
         });

@@ -11,8 +11,8 @@ export default function TodoList(props) {
 
     let style = {
 
-        'margin-bottom': '25px',
-        'box-shadow': '5px 5px 12px 0px grey',
+        'marginBottom': '25px',
+        'boxShadow': '5px 5px 12px 0px grey',
 
     }
 
@@ -20,12 +20,8 @@ export default function TodoList(props) {
 
         <ListGroup>
             {props.list.map(item => (
-                // <ListGroup.Item variant={item.complete ? 'success' : 'danger'} key={item._id}>
-                //     <span onClick={() => props.handleComplete(item._id)}>
-                //         {item.text}
-                //     </span>
-                // </ListGroup.Item>
-                <Card style={style}>
+
+                <Card style={style} key={item._id}>
                     <Card.Header>
                         <span onClick={() => props.handleComplete(item._id)}>
                             <Badge pill variant={item.complete ? 'success' : 'warning'}>
@@ -46,6 +42,7 @@ export default function TodoList(props) {
 
                     </Card.Body>
                 </Card>
+
             ))}
         </ListGroup>
 
