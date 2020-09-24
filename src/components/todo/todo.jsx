@@ -5,17 +5,17 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Navbar from 'react-bootstrap/Navbar'
 
-
 import TodoForm from './form.jsx';
 import TodoList from './list.jsx';
-// import useAxios from '../hooks/axios.js';
+import Pagination from '../pagination/pagination.js';
 import './todo.scss';
 
 
 export default function ToDo() {
 
     const [list, setList] = useState([]);
-
+    const [itemsPerPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(1);
     async function axiosGetCall() {
 
         const { data } = await axios({
@@ -117,12 +117,22 @@ export default function ToDo() {
 
     };
 
+    const updateActivePage = (page) => {
+        setCurrentPage(page)
+    };
+
 
     useEffect(() => {
 
         axiosGetCall()
 
     }, []);
+
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexofFirstItem = indexOfLastItem - itemsPerPage;
+    const currentList = list.slice(indexofFirstItem, indexOfLastItem);
+
 
     return (
 
@@ -152,10 +162,11 @@ export default function ToDo() {
                 <Col>
                     <div>
                         <TodoList
-                            list={list}
+                            list={currentList}
                             handleComplete={toggleComplete}
                             handleDelete={deleteItem}
                         />
+                        <Pagination itemsPerPage={itemsPerPage} totalItems={list.length} updateActivePage={updateActivePage} />
                     </div>
                 </Col>
             </Row>

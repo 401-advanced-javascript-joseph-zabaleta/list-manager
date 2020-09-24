@@ -3,7 +3,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 
-
 import './todo.scss';
 
 
