@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar'
 
 import TodoForm from './form.jsx';
 import TodoList from './list.jsx';
+// import useAxios from '../hooks/axios.js';
 import './todo.scss';
 
 
@@ -16,22 +16,16 @@ export default function ToDo() {
 
     const [list, setList] = useState([]);
 
-    useEffect(() => {
+    async function axiosGetCall() {
 
-        async function axiosCall() {
+        const { data } = await axios({
+            method: 'get',
+            url: 'http://localhost:3001/api/v1/todolist',
+            data: {}
+        });
 
-            const { data } = await axios({
-                method: 'get',
-                url: 'http://localhost:3001/api/v1/todolist',
-                data: {}
-            });
-
-            setList(data);
-        }
-
-        axiosCall()
-
-    }, []);
+        setList(data);
+    }
 
     const addItem = (item) => {
 
@@ -58,33 +52,77 @@ export default function ToDo() {
 
         axiosCall()
 
+    };
 
+
+    const deleteItem = (id) => {
+
+        async function axiosCall() {
+
+            let item = list.filter(i => i._id === id)[0] || {};
+
+            if (item._id) {
+
+                await axios({
+                    method: 'delete',
+                    url: 'http://localhost:3001/api/v1/todolist/' + item._id,
+                })
+
+                axiosGetCall()
+
+            }
+
+        };
+
+        axiosCall();
 
     };
 
 
     const toggleComplete = (id) => {
 
-        let item = list.filter(i => i._id === id)[0] || {};
+        async function axiosCall() {
 
-        if (item._id) {
+            let item = list.filter(i => i._id === id)[0] || {};
 
-            item.complete = !item.complete;
+            if (item._id) {
 
-            setList(prevState => {
+                item.complete = !item.complete;
 
-                return list.map(listItem => {
+                let body = {
+                    complete: Boolean(item.complete),
+                }
 
-                    return listItem._id === item._id ? item : listItem;
+                await axios({
+                    method: 'put',
+                    url: 'http://localhost:3001/api/v1/todolist/' + item._id,
+                    data: body
+                })
+
+                setList(prevState => {
+
+                    return list.map(listItem => {
+
+                        return listItem._id === item._id ? item : listItem;
+
+                    });
 
                 });
 
-            });
+            }
 
         };
 
+        axiosCall();
+
     };
 
+
+    useEffect(() => {
+
+        axiosGetCall()
+
+    }, []);
 
     return (
 
@@ -116,6 +154,7 @@ export default function ToDo() {
                         <TodoList
                             list={list}
                             handleComplete={toggleComplete}
+                            handleDelete={deleteItem}
                         />
                     </div>
                 </Col>

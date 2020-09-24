@@ -1,27 +1,34 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const defaultData = {};
 
-async function getList(config) {
+export default function useAxios(method, url, data = defaultData) {
 
-    const { data } = await axios(config);
+    const [values, setValues] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
-    return data;
+    useEffect(() => {
+
+        async function fetchData() {
+            setIsLoading(true);
+            const response = await axios({
+                method,
+                url,
+                data: data ? data : {}
+            });
+            const results = response.data;
+            setValues(results);
+            setIsLoading(false);
+        }
+
+        fetchData();
+    }, [method, url, data]);
+
+
+    return {
+        values,
+        isLoading,
+    };
 
 };
-
-
-export default function useAxios(config) {
-
-    const [list, setList] = useState(() => {
-
-        return getList(config);
-
-    });
-
-
-
-
-    return [list, setList];
-
-}

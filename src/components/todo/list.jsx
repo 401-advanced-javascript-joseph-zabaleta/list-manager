@@ -49,7 +49,7 @@ export default function TodoList(props) {
                         <span>
                             {item.assignee}
                         </span>
-                        <span style={style.spanDelete} onClick={() => { console.log('clicked') }}>
+                        <span style={style.spanDelete} onClick={() => props.handleDelete(item._id)}>
                             X
                         </span>
                     </Card.Header>
