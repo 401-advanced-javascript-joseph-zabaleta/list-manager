@@ -11,8 +11,26 @@ export default function TodoList(props) {
 
     let style = {
 
-        'marginBottom': '25px',
-        'boxShadow': '5px 5px 12px 0px grey',
+        card: {
+            'marginBottom': '25px',
+            'boxShadow': '5px 5px 12px 0px grey',
+        },
+
+        spanDelete: {
+
+            'textAlign': 'center',
+            'fontWeight': '700',
+            'fontSize': '1em',
+            'float': 'right',
+            'cursor': 'pointer'
+
+        },
+
+        spanBadge: {
+
+            'paddingRight': '10px'
+
+        }
 
     }
 
@@ -21,15 +39,18 @@ export default function TodoList(props) {
         <ListGroup>
             {props.list.map(item => (
 
-                <Card style={style} key={item._id}>
+                <Card style={style.card} key={item._id}>
                     <Card.Header>
-                        <span onClick={() => props.handleComplete(item._id)}>
+                        <span style={style.spanBadge} onClick={() => props.handleComplete(item._id)}>
                             <Badge pill variant={item.complete ? 'success' : 'warning'}>
                                 {item.complete ? 'Complete' : 'Pending'}
                             </Badge>
                         </span>
                         <span>
                             {item.assignee}
+                        </span>
+                        <span style={style.spanDelete} onClick={() => { console.log('clicked') }}>
+                            X
                         </span>
                     </Card.Header>
                     <Card.Body>
