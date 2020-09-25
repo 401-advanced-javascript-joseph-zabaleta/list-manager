@@ -1,16 +1,20 @@
 import React from 'react';
 
-import ToDo from './components/todo/todo.js';
-import Header from './components/header.js';
+import ToDo from './components/todo/todo.jsx';
+import Header from './components/header/header.jsx';
+import LoginProvider from './context/auth/context.js';
 
+export default function App() {
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <>
-                <Header />
+    return (
+
+        <>
+            <Header />
+            <LoginProvider>
                 <ToDo />
-            </>
-        );
-    }
-}
+            </LoginProvider>
+        </>
+
+    );
+
+};
