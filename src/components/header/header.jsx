@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+// import Login from '../../context/auth/login.js';
 
 import './header.scss'
 
@@ -23,6 +24,7 @@ export default props => (
                     Login
                 </Button>
             </Form>
+            {/* <Login /> */}
 
         </Navbar>
 

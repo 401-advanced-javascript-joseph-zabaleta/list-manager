@@ -2,6 +2,7 @@ import React from 'react';
 
 import ToDo from './components/todo/todo.jsx';
 import Header from './components/header/header.jsx';
+import LoginProvider from './context/auth/context.js';
 
 export default function App() {
 
@@ -9,7 +10,9 @@ export default function App() {
 
         <>
             <Header />
-            <ToDo />
+            <LoginProvider>
+                <ToDo />
+            </LoginProvider>
         </>
 
     );
